@@ -37,7 +37,8 @@ exports.showAllCategory = async (req, res) => {
 
         return res.status(200).json({
             message: "got Category successfully",
-            success: false
+            data: allCategory,
+            success: true
         })
     } catch (err) {
         return res.status(400).json({

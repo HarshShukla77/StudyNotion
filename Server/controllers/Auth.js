@@ -47,7 +47,8 @@ exports.sendOTP= async (req,res)=>{
 
             res.status(200).json({
                 message:"otp sent",
-                success:true
+                success:true,
+                data:otpBody
             })
 
 }catch(err){
@@ -136,7 +137,7 @@ exports.signUp = async (req, res) => {
         message: "User created successfully"
       });
     } catch (err) {
-      console.error(err); // Log the error for debugging
+      console.error(err);
       return res.status(500).json({
         message: "Failed to sign up, please try again",
         success: false
