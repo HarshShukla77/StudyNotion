@@ -130,7 +130,7 @@ const Nav = (props) => {
           )
          }
          {
-          token!== null && <ProfileDropDown> </ProfileDropDown>
+          token && user && <ProfileDropDown> </ProfileDropDown>
          }
       </div>
     </div>
