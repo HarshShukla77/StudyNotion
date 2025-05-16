@@ -49,7 +49,7 @@ app.use("/api/v1/payment", paymentRoutes);
 // Default route
 app.get("/", (req, res) => {
   return res.json({
-    success: true,
+    success: true,  
     message: "Your server is up and running",
   });
 });

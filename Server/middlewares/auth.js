@@ -5,11 +5,13 @@ const User = require("../models/User")
 ///auth
 exports.auth= async(req,res,next)=>{
     try{
+
+        console.log("before token extraction")
         //extract token
 
-        const token = req.cookies.token || req.body.token || req.header("Authorisation").replace("Bearer ","");
+        const token = req.cookies.token || req.body.token || req.header("Authorization").replace("Bearer ","");
         //if token missing then return res
-
+        console.log("after token extraction")
         if(!token){
             return res.status(401).json({
                 message:"token not found",
@@ -62,7 +64,7 @@ return res.status(500).json({
 //isInstructor
 exports.isInstructor = async(req,res,next)=>{
     try{
-         if(req.user.accountType!=="isInstructor"){
+         if(req.user.accountType!=="Instructor"){
             return res.status(401).json({
                 message:"this is a protected route for isInstructor only",
                 success:false

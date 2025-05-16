@@ -4,6 +4,9 @@ const otpGenerator= require("otp-generator");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Profile = require('../models/Profile');
+const mailSender = require("../utils/mailSend");
+const emailTemplate = require("../mail/templates/emailVerificationTemplate");
+
 //send otp
 exports.sendOTP= async (req,res)=>{
    try{ const {email}= req.body;
@@ -44,7 +47,15 @@ exports.sendOTP= async (req,res)=>{
 
             const otpBody = await OTP.create(otpPayload);
             console.log(otpBody);
-
+            try {
+              await mailSender(email, "Verify Your Email", emailTemplate(otp));
+              console.log("✅ Email sent successfully to:", email);
+            } catch (error) {
+              console.error("❌ Failed to send email:", error);
+            }
+           
+           
+           
             res.status(200).json({
                 message:"otp sent",
                 success:true,
@@ -86,7 +97,7 @@ exports.signUp = async (req, res) => {
         return res.status(400).json({
           message: "Passwords do not match",
           success: false
-        });
+        }); 
       }
   
       // Check unique email
@@ -170,10 +181,10 @@ exports.login = async(req,res)=>{
             // token banao jwt after password matching 
             if(await bcrypt.compare(password,user.password)){
              const payload ={
-                email:user.email,
+                email:user.email,                                       
                 id:user._id,
                 accountType:user.accountType
-             }
+             }        
                 const token = jwt.sign(payload,process.env.JWT_SECRET,{
                     expiresIn:"1d"
                 });

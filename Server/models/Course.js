@@ -48,7 +48,7 @@ courseName:{
     ref:"User"
  }],
  instructions:{
-   type: String,
+   type: [String],
   
  },
  status:{

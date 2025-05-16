@@ -59,7 +59,7 @@ const Nav = (props) => {
           <p>Catalog</p>
           < FaArrowDown />
           <div className='  invisible absolute left-[50%] translate-x-[-100px] translate-y-[20px] top-[50%] flex flex-col   rounded-md bg-richblack-5 p-4
-           text-richblack-900 opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:visible lg:w-[300px] ' > 
+           text-richblack-900 opacity-0  transition-all duration-200 group-hover:opacity-100 group-hover:visible lg:w-[300px] z-50  ' > 
            <div className='absolute left-[30%] top-0 h-6 w-6 rotate-45 rounded bg-richblack-5  translate-y-[-10px]   ' ></div>
             { 
               subLinks.length ?  (
